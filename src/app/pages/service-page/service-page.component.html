@@ -1,0 +1,55 @@
+<div class="container mt-5 service">
+  <div class="row">
+    <section class="col-2 p-2 service-sideBar">
+      <div class="mb-4 p-2 sort">
+        <h4 class="text-org-color text-uppercase mb-3">Sort</h4>
+        <select
+          class="form-select mb-2"
+          [(ngModel)]="selectedSort"
+          (change)="onSortSelected()"
+          >
+          <option value="name" selected>Name</option>
+          <option value="cost">By Price</option>
+          <option value="costDesc">By Price Desc</option>
+        </select>
+      </div>
+      <div class="p-2">
+      <h4 class="text-org-color text-uppercase mb-3">Categories</h4>
+      <ul
+        class="d-flex justify-content-center ps-0"
+        *ngFor="let category of categories; let i = index;"
+        [class.active]="category.id == serviceParams.categoryId || category.id == 0 && serviceParams.categoryId == null "
+        >
+        <li class="p-2" (click)="onCategorySelected(category.id)">
+          {{category.name}}
+        </li>
+      </ul>
+    </div>
+    </section>
+    <section class="col-10">
+      <div class="row align-items-center mb-4 p-2 ms-4">
+        <div class="col-2">
+          <h3 class="text-uppercase">services</h3>
+        </div>
+        <div class="col-9 d-flex justify-content-end">
+          <input class="form-control search" type="text" placeholder="search" [(ngModel)]="searchTerm" (keyup.enter)="onSearch()">
+          <button class="btn btn-bg-org text-light ms-3" (click)="onSearch()">search</button>
+        </div>
+      </div>
+      <div class="row ms-4">
+        <div class="col-lg-3 col-md-5 col-ms-3 mb-4" *ngFor="let service of services?.data">
+          <app-service-item [service]="service"></app-service-item>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center ">
+        <pagination
+        [totalItems]="services.count"
+        [itemsPerPage]="services.pageSize"
+        (pageChanged)="onPageChanges($event.page)"
+        >
+        </pagination>
+      </div>
+    </section>
+
+  </div>
+</div>

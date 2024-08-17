@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand text-uppercase"href="#">Smart Gallery</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="justify-content-center collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav text-uppercase">
+                <li class="nav-item me-2">
+                    <a class="nav-link"  routerLink="/home" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/services" routerLinkActive="active">Services</a>
+                </li>
+            </ul>
+        </div>
+        <div class="justify-content-end navbar-collapse auth-nav">
+          <ul class="navbar-nav">
+            <li class="me-2">
+              <button class="btn" routerLink="/accounts/login" >login</button>
+            </li>
+            <li>
+              <button class="btn btn-bg-org">Register</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+</nav>

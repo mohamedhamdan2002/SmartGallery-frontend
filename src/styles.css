@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #172153;
+  --secondary-color: #f56f46;
+  --second-font-color: #454f59;
+  --second-bg-color: #f5f7fa;
+  --third-color: #fff;
+}
+ul{
+  list-style: none;
+}
+body {
+  background-color: white !important;
+
+}
+.text-org-color {
+  color: var(--secondary-color) !important;
+}
+.btn-bg-org {
+  background-color: var(--secondary-color) !important;
+}
+.text-prim-color {
+  color: var(--primary-color) !important;
+}
+/* font-family: Roboto, sans-serif; */
