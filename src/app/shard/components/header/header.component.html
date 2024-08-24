@@ -16,13 +16,19 @@
         </div>
         <div class="justify-content-end navbar-collapse auth-nav">
           <ul class="navbar-nav">
-            <li class="me-2">
-              <button class="btn" routerLink="/accounts/login" >login</button>
-            </li>
-            <li>
-              <button class="btn btn-bg-org">Register</button>
-            </li>
+            @if(!authService.isUserLogIn) {
+              <li class="me-2">
+                <button class="btn" routerLink="/accounts/login" >login</button>
+              </li>
+              <li>
+                <button class="btn btn-bg-org">Register</button>
+              </li>
+            }@else {
+              <li>
+                <button class="btn btn-bg-org">Logout</button>
+              </li>
+            }
           </ul>
         </div>
-      </div>
+    </div>
 </nav>

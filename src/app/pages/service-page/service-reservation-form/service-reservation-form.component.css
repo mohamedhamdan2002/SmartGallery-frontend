@@ -1,0 +1,23 @@
+.input-field {
+  border-color: transparent;
+  background-color: #adb5bd33;
+  padding: 15px 20px;
+  border-radius: 10px;
+}
+.input-field:focus {
+  box-shadow: none;
+  outline: transparent !important;
+  border: 1px solid var(--primary-color);
+}
+.input-field::placeholder {
+  color: var(--primary-color);
+}
+.form-check-input {
+  box-shadow: none;
+}
+/* .form-check-input:focus */
+.form-check-input:checked {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+

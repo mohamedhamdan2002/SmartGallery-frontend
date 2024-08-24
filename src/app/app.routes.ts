@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ServiceDetailsComponent } from './pages/service-page/service-details/service-details.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'services', component: ServicePageComponent },
   { path: 'services/:id', component: ServiceDetailsComponent },

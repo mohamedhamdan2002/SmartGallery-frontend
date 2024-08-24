@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ICategory } from '../../shard/models/category';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment.development';
 import { ApiConstant } from '../constant/api.constant';
 import { map, of } from 'rxjs';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
-  baseUrl = environment.apiUrl;
+export class CategoryService extends ApiService {
   private categories: ICategory[] = [];
-  constructor(private http: HttpClient) { }
-
+  constructor()  {
+    super();
+  }
   getAllCategory() {
     if(this.categories.length > 0)
       return of(this.categories);

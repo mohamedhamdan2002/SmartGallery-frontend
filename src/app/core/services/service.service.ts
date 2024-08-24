@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { IService } from '../../shard/models/service';
 import { ServiceParameters } from '../../shard/models/ServiceParameters';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 import { IPagination } from '../../shard/models/pagination';
 import { ApiConstant } from '../constant/api.constant';
-import { environment } from '../../../environments/environment.development';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceService {
-  baseUrl = environment.apiUrl;
+export class ServiceService extends ApiService {
   private serviceParameters: ServiceParameters = new ServiceParameters();
-  constructor(private http: HttpClient) { }
+  constructor() {
+    super();
+  }
   getAllServices() {
     let params = new HttpParams();
     if(this.serviceParameters.categoryId != null && this.serviceParameters.categoryId != 0)
