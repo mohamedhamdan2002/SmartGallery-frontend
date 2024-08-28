@@ -1,0 +1,35 @@
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+  <div class="modal-header">
+    <h5 class="modal-title">{{status}} Category</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="close()"
+      >
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-4">
+      <input
+        class="form-control input-field"
+        placeholder="Category"
+        name="categoryName"
+        type="text"
+        [(ngModel)]="categoryModel.name"
+        required
+        >
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Cancel</button>
+    <button
+      type="submit"
+      class="btn text-light btn-bg-org"
+      [disabled]="form.invalid || form.untouched"
+      >
+      {{status}}
+    </button>
+  </div>
+</form>

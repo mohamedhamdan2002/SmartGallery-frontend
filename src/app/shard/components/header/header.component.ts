@@ -1,19 +1,31 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { LoginComponent } from '../../../pages/login/login.component';
 import { AuthService } from '../../../core/services/auth.service';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCircleUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
     RouterLink,
     RouterLinkActive,
-    LoginComponent
+    LoginComponent,
+    FontAwesomeModule,
+    CommonModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
   authService = inject(AuthService);
+  router = inject(Router);
+  faCircleUser = faCircleUser
+  faRightFromBracket = faRightFromBracket
+  onLogoutBtnClicked() {
+    this.authService.logout().subscribe(res => {
+      console.log(res);
+    })
+  }
 }

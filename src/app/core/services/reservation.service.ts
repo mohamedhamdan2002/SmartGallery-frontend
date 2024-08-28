@@ -15,4 +15,7 @@ export class ReservationService extends ApiService {
   createReservation(serviceId: number, reservationForCreation: IReservationForCreation) {
     return this.http.post<IReservation>(`${this.baseUrl}${ApiConstant.RESERVATIONS}/${serviceId}`, reservationForCreation);
   }
+  getReservationForUser() {
+    return this.http.get<IReservation[]>(`${this.baseUrl}${ApiConstant.RESERVATIONS}`);
+  }
 }

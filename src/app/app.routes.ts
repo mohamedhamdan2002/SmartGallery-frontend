@@ -3,11 +3,28 @@ import { HomeComponent } from './pages/home/home.component';
 import { ServicePageComponent } from './pages/service-page/service-page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ServiceDetailsComponent } from './pages/service-page/service-details/service-details.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { LayoutComponent } from './pages/admin/layout/layout.component';
+import { CategoriesComponent } from './pages/admin/categories/categories.component';
+import { ServicesComponent } from './pages/admin/services/services.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'services', component: ServicePageComponent },
   { path: 'services/:id', component: ServiceDetailsComponent },
-  { path: 'accounts/login', component: LoginComponent },
+  {
+    path: 'accounts', children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'profile', component: ProfileComponent }
+    ]
+  },
+  {
+    path: "admin",
+    component: LayoutComponent,
+    children: [
+      { path: 'categories', component: CategoriesComponent },
+      { path: 'services', component: ServicesComponent }
+    ]
+  }
 ];

@@ -3,7 +3,8 @@ import { ApiService } from './api.service';
 import { ApiConstant } from '../constant/api.constant';
 import { LoginViewModel } from '../../shard/models/LoginViewModel';
 import { AuthResponse } from '../../shard/models/AuthResponse';
-import { map } from 'rxjs';
+import { map, of } from 'rxjs';
+import { UserProfile } from '../../shard/models/UserProfile';
 
 
 @Injectable({
@@ -31,6 +32,15 @@ export class AuthService extends ApiService {
   }
   get isUserLogIn() : boolean {
     return this.userLogInStatus();
+  }
+  logout() {
+    if(this.token)
+      localStorage.removeItem(ApiConstant.USER_TOKEN);
+    this.userLogInStatus.set(false);
+    return of(true);
+  }
+  getUserProfile() {
+    return this.http.get<UserProfile>(`${this.baseUrl}${ApiConstant.PROFILE}`);
   }
 
 }

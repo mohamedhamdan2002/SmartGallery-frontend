@@ -1,0 +1,14 @@
+.input-field {
+  border-color: transparent;
+  background-color: #adb5bd33;
+  padding: 15px 20px;
+  border-radius: 10px;
+}
+.input-field:focus {
+  box-shadow: none;
+  outline: transparent !important;
+  border: 1px solid var(--primary-color);
+}
+.input-field::placeholder {
+  color: var(--primary-color);
+}

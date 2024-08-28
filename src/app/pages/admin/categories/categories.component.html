@@ -1,0 +1,26 @@
+<button class="btn btn-bg-org text-light d-block ms-auto me-5 mt-5" (click)="onCreate()">Add Category +</button>
+<div class="card card-body m-4">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Category</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories$ | async; let i = index;">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{category.name}}</td>
+        <td>
+          <a role="button" class="me-4" (click)="onEdit(category)">
+            <fa-icon [icon]="icons.edit" class="text-prim-color"></fa-icon>
+          </a>
+          <a role="button" (click)="openConfirmDialog(category)">
+            <fa-icon [icon]="icons.delete" class="text-danger"></fa-icon>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

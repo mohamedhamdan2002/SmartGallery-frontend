@@ -13,6 +13,10 @@ body {
   background-color: white !important;
 
 }
+.bg-main-primary {
+  background-color: var(--primary-color) !important;
+
+}
 .text-org-color {
   color: var(--secondary-color) !important;
 }

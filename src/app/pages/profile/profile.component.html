@@ -1,0 +1,122 @@
+<div class="container mt-5">
+  <div class="row">
+    <section class="col-2 p-2 sideBar">
+      <div class="p-2">
+        <h4 class="text-org-color text-uppercase mb-3">Settings</h4>
+        <ul class="d-flex justify-content-center flex-column ps-0">
+          <li class="p-2">
+            Contact Info
+          </li>
+          <li class="p-2" >
+            Reservations
+          </li>
+          <li class="p-2" >
+            Payment History
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="col-10">
+      <div class="card">
+        <div class="row">
+          <div class="col-4 p-4">
+            <img class="user-img" src="assets/images/user.png" alt="">
+          </div>
+          <div class="col-8 mt-4">
+            <button
+              class="btn ms-auto me-4 d-block"
+              (click)="isEdit.set(!isEdit())"
+              >
+              <fa-icon [icon]="faUserPen" class="fa-xl"></fa-icon>
+            </button>
+            <form action="" class="row p-4">
+              <div class="mb-4 col-6">
+                <input
+                  class="form-control input-field"
+                  placeholder="First Name"
+                  type="text"
+                  name="firstName"
+                  [(ngModel)]="profile.firstName"
+                  required
+                  [disabled]="!isEdit()"
+                  >
+              </div>
+              <div class="mb-4 col-6">
+                <input
+                  class="form-control input-field"
+                  placeholder="Last Name"
+                  type="text"
+                  name="lastName"
+                  [(ngModel)]="profile.lastName"
+                  required
+                  [disabled]="!isEdit()"
+                  >
+              </div>
+              <div class="mb-4 col-12">
+                <input
+                  class="form-control input-field"
+                  placeholder="Email"
+                  type="email"
+                  name="email"
+                  [(ngModel)]="profile.email"
+                  required
+                  [disabled]="!isEdit()"
+                  >
+              </div>
+              <div class="mb-4 col-6">
+                <input
+                  class="form-control input-field"
+                  placeholder="Phone Number"
+                  type="text"
+                  name="phoneNumber"
+                  [(ngModel)]="profile.phoneNumber"
+                  required
+                  [disabled]="!isEdit()"
+                  >
+              </div>
+              <div class="mb-4 col-6">
+                <input
+                  class="form-control input-field"
+                  placeholder="Address"
+                  type="text"
+                  name="address"
+                  [(ngModel)]="profile.address"
+                  required
+                  [disabled]="!isEdit()"
+                  >
+              </div>
+              <div>
+                <button
+                  class="btn text-light btn-bg-org"
+                  type="submit"
+                  [class.d-none]="!isEdit()"
+                  >
+                    Save Changes
+                  </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="card mt-4">
+        <p class="p-2 card-header">
+          <a class="btn text-light btn-bg-org" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            View Reservations
+          </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card-body">
+            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+          </div>
+        </div>
+      </div> -->
+    </section>
+  </div>
+  <div class="row">
+    <div class="card mt-4 mb-4">
+      <div class="card-body">
+        <customer-reservations></customer-reservations>
+      </div>
+    </div>
+  </div>
+</div>

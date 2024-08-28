@@ -18,14 +18,39 @@
           <ul class="navbar-nav">
             @if(!authService.isUserLogIn) {
               <li class="me-2">
-                <button class="btn" routerLink="/accounts/login" >login</button>
+                <button
+                  class="btn"
+                  routerLink="/accounts/login"
+                  [class.disabled]="router.url.split('?')[0] == '/accounts/login'"
+                  [queryParams]="{ redirectUrl: router.url }"
+                  >
+                  Login
+                </button>
               </li>
               <li>
                 <button class="btn btn-bg-org">Register</button>
               </li>
             }@else {
               <li>
-                <button class="btn btn-bg-org">Logout</button>
+                <div class="dropdown">
+                  <button class="btn-no-border dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <fa-icon [icon]="faCircleUser" class="fa-2xl"></fa-icon>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" routerLink="/accounts/profile">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        role="button"
+                        (click)="onLogoutBtnClicked()"
+                        >
+                        <fa-icon [icon]="faRightFromBracket" class="fa-sm me-2"></fa-icon>
+                        <span>Logout</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </li>
             }
           </ul>

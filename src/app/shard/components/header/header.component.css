@@ -31,3 +31,10 @@ ul li:has(a.active)  {
 .btn-bg-org:hover {
   background-color: var(--primary-color) !important;
 }
+
+.btn-no-border {
+  border: none !important;
+}
+.dropdown .dropdown-menu li a {
+  color: var(--primary-color) !important;
+}

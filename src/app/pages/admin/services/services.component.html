@@ -1,0 +1,80 @@
+<div class="card card-body m-4 mt-5">
+  <button class="btn btn-bg-org text-light d-block ms-auto me-2 mb-4" >Add Category +</button>
+  <!-- <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Service</th>
+        <th scope="col">Category</th>
+        <th scope="col">Description</th>
+        <th scope="col">Picture</th>
+        <th scope="col">Cost</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let service of services$ | async; let i = index;">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{service.name}}</td>
+        <td>{{service.category}}</td>
+        <td>{{service.description}}</td>
+        <td><img class="img-fluid" src="https://fakeimg.pl/350x200/" alt="service"></td>
+        <td>{{service.cost}}</td>
+        <td>
+          <a role="button" class="me-2" >
+            <fa-icon [icon]="icons.edit" class="text-prim-color"></fa-icon>
+          </a>
+        </td>
+        <td>
+          <a role="button">
+            <fa-icon [icon]="icons.delete" class="text-danger"></fa-icon>
+          </a>
+        </td>
+        <p class="d-inline-flex gap-1">
+          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Link with href
+          </a>
+
+        </p>
+      </tr>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+        </div>
+      </div>
+    </tbody>
+  </table> -->
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
