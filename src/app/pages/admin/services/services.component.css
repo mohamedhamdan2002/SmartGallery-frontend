@@ -1,3 +1,82 @@
 .card {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 10px;
+
+}
+.actions {
+  border-bottom: 1px solid #d0d7de;
+  padding: 20px;
+}
+.table-container {
+  height: 500px;
+  overflow: auto;
+}
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.btn {
+  border-radius: 50% !important;
+}
+.input-field {
+  border-color: transparent;
+  background-color: #adb5bd33;
+  padding: 15px 20px;
+  border-radius: 10px;
+}
+.input-field:focus {
+  box-shadow: none;
+  outline: transparent !important;
+  border: 1px solid var(--primary-color);
+}
+.input-field::placeholder {
+  color: var(--primary-color);
+}
+.mat-sticky-header {
+  z-index: 1000;
+  background-color: white;
 }

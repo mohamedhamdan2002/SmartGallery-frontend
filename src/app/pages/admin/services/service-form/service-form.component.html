@@ -1,0 +1,83 @@
+<div class="container">
+  <h1 class="mb-4">{{status}} Service</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-7">
+        <div>
+          <mat-form-field class="col-12">
+            <mat-label>Name</mat-label>
+            <input
+              type="email"
+              matInput
+              placeholder="Ex. Enter service name"
+              formControlName="name"
+              >
+            <!-- <mat-hint>Errors appear instantly!</mat-hint>
+            @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+              <mat-error>Please enter a valid email address</mat-error>
+            }
+            @if (emailFormControl.hasError('required')) {
+              <mat-error>Email is <strong>required</strong></mat-error>
+            } -->
+          </mat-form-field>
+          <mat-form-field class="col-5 me-4">
+            <mat-label>Cost</mat-label>
+            <input
+              type="number"
+              matInput
+              formControlName="cost"
+              >
+            <!-- <mat-hint>Errors appear instantly!</mat-hint>
+            @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+              <mat-error>Please enter a valid email address</mat-error>
+            }
+            @if (emailFormControl.hasError('required')) {
+              <mat-error>Email is <strong>required</strong></mat-error>
+            } -->
+          </mat-form-field>
+          <mat-form-field class="col-6">
+            <mat-label>Service Category</mat-label>
+            <mat-select formControlName="categoryId">
+              @for (category of (categories$ | async); track category) {
+                <mat-option [value]="category.id">{{category.name}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-12">
+            <mat-label>Description</mat-label>
+            <textarea
+              rows="10"
+              matInput
+              placeholder="Ex. Enter Description For Service"
+              formControlName="description"
+              >
+            </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-5">
+        <div>
+          <img class="card-img-top" src="https://fakeimg.pl/350x200/" alt="service-image">
+          <div class="mt-4">
+            <input
+              class="form-control input-field"
+              placeholder="pictureUrl"
+              type="file"
+              formControlName="pictureUrl"
+              required
+              >
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+        <button
+          type="submit"
+          class="btn text-light bg-main-primary"
+          >
+          {{status}}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

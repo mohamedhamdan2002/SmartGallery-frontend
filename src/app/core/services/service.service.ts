@@ -5,6 +5,7 @@ import { HttpParams } from '@angular/common/http';
 import { IPagination } from '../../shard/models/pagination';
 import { ApiConstant } from '../constant/api.constant';
 import { ApiService } from './api.service';
+import { ServiceForCreateOrUpdate } from '../../shard/models/ServiceForCreateOrUpdate';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,15 @@ export class ServiceService extends ApiService {
   }
   setServiceParams(params: ServiceParameters) {
     this.serviceParameters = params;
+  }
+
+  deleteService(id: number) {
+    return this.http.delete(`${this.baseUrl}${ApiConstant.SERVICES}/${id}`);
+  }
+  updateService(id: number, serviceModel: ServiceForCreateOrUpdate) {
+    return this.http.put(`${this.baseUrl}${ApiConstant.SERVICES}/${id}`, serviceModel);
+  }
+  createService(serviceModel: ServiceForCreateOrUpdate) {
+    return this.http.post(`${this.baseUrl}${ApiConstant.SERVICES}`, serviceModel);
   }
 }

@@ -7,6 +7,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { LayoutComponent } from './pages/admin/layout/layout.component';
 import { CategoriesComponent } from './pages/admin/categories/categories.component';
 import { ServicesComponent } from './pages/admin/services/services.component';
+import { ServiceFormComponent } from './pages/admin/services/service-form/service-form.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,7 +25,9 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'categories', component: CategoriesComponent },
-      { path: 'services', component: ServicesComponent }
+      { path: 'services', component: ServicesComponent },
+      { path: 'services/add', component: ServiceFormComponent },
+      { path: 'services/edit/:id', component: ServiceFormComponent },
     ]
   }
 ];

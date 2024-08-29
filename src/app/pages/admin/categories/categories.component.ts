@@ -4,10 +4,13 @@ import { ICategory } from '../../../shard/models/category';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { CategoryService } from '../../../core/services/category.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faPen, faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { ModalService } from '../../../shard/modal.service';
 import { ConfirmDialogComponent } from '../../../shard/components/confirm-dailog/confirm-dialog.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { MaterialModule } from '../../../shard/material.module';
+import { SelectionModel } from '@angular/cdk/collections';
 @Component({
   selector: 'app-categories',
   standalone: true,
@@ -15,23 +18,26 @@ import { CategoryFormComponent } from './category-form/category-form.component';
     AsyncPipe,
     CommonModule,
     FontAwesomeModule,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    MaterialModule
   ],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css'
 })
 export class CategoriesComponent implements OnInit {
-  icons =  { edit: faPen, delete: faTrashCan };
-  categories$!: Observable<ICategory[]>;
+  icons =  { add: faPlus, view: faEye ,edit: faPen, delete: faTrashCan };
+  columnsToDisplay = ['select', 'no', 'name', 'edit', 'delete'];
+  dataSource = new MatTableDataSource<ICategory>();
   categoryService = inject(CategoryService);
   modalService = inject(ModalService);
-  cd = inject(ChangeDetectorRef);
   ngOnInit(): void {
     this.loadCategories();
   }
   loadCategories() {
-    console.log('Loading categories...');
-    this.categories$ = this.categoryService.getAllCategory();
+    this.categoryService.getAllCategory().subscribe((res)=> {
+      console.log(res);
+      this.dataSource.data = res;
+    });
   }
 
   openConfirmDialog(category: ICategory) {
@@ -49,7 +55,7 @@ export class CategoriesComponent implements OnInit {
   private deleteCategory(categoryId: number) {
     this.categoryService.deleteCategory(categoryId).subscribe(
       () => {
-        this.categories$ = this.categories$.pipe(map((categories)=> categories.filter(c => c.id !== categoryId)));
+        this.dataSource.data = this.dataSource.data.filter(c => c.id !== categoryId);
       }
     );
   }
@@ -68,8 +74,34 @@ export class CategoriesComponent implements OnInit {
     ref.onHide?.subscribe((value) => {
       if(value == true) {
         this.loadCategories();
-        this.cd.detectChanges();
       }
     });
+  }
+
+  selection = new SelectionModel<ICategory>(true, []);
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(position?: number, row?: ICategory): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${position || 0 + 1}`;
   }
 }
