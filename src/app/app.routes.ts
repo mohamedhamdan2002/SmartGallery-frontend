@@ -1,15 +1,18 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { ServicePageComponent } from './pages/service-page/service-page.component';
-import { LoginComponent } from './pages/login/login.component';
+
 import { ServiceDetailsComponent } from './pages/service-page/service-details/service-details.component';
-import { ProfileComponent } from './pages/profile/profile.component';
+
 import { LayoutComponent } from './pages/admin/layout/layout.component';
 import { CategoriesComponent } from './pages/admin/categories/categories.component';
 import { ServicesComponent } from './pages/admin/services/services.component';
 import { ServiceFormComponent } from './pages/admin/services/service-form/service-form.component';
 import { ReservationsComponent } from './pages/admin/reservations/reservations.component';
 import { UserLayoutComponent } from './shard/components/user-layout/user-layout.component';
+import { RegisterComponent } from './pages/account/register/register.component';
+import { LoginComponent } from './pages/account/login/login.component';
+import { ProfileComponent } from './pages/account/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -21,6 +24,7 @@ export const routes: Routes = [
       {
         path: 'accounts', children: [
           { path: 'login', component: LoginComponent },
+          { path: 'register', component: RegisterComponent },
           { path: 'profile', component: ProfileComponent }
         ]
       },

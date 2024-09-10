@@ -1,10 +1,12 @@
 import { Component, inject, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { LoginViewModel } from '../../shard/models/LoginViewModel';
+import { LoginViewModel } from '../../../shard/models/LoginViewModel';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../core/services/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MaterialModule } from '../../shard/material.module';
+import { MaterialModule } from '../../../shard/material.module';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -22,6 +24,7 @@ export class LoginComponent implements OnInit {
   private router = inject(Router);
   private activeRoute = inject(ActivatedRoute);
   private authService = inject(AuthService);
+  private toastrService = inject(ToastrService);
   ngOnInit(): void {
     if(this.authService.isUserLogIn)
       history.back();
@@ -30,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
   onSubmit() {
     this.authService.login(this.loginForm).subscribe(() => {
+      this.toastrService.success("Login done Successfully");
       this.router.navigateByUrl(this.redirectUrl);
     });
   }

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ReservationService } from '../../../core/services/reservation.service';
-import { IReservation } from '../../../shard/models/Reservation';
+import { ReservationService } from '../../../../core/services/reservation.service';
+import { IReservation } from '../../../../shard/models/Reservation';
 import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
 

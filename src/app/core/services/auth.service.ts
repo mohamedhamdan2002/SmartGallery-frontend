@@ -5,6 +5,7 @@ import { LoginViewModel } from '../../shard/models/LoginViewModel';
 import { AuthResponse } from '../../shard/models/AuthResponse';
 import { map, of } from 'rxjs';
 import { UserProfile } from '../../shard/models/UserProfile';
+import { RegisterViewModel } from '../../shard/models/RegisterViewModel';
 
 
 @Injectable({
@@ -19,10 +20,20 @@ export class AuthService extends ApiService {
   }
   login(loginViewModel: LoginViewModel) {
     return this.http.post<AuthResponse>(`${this.baseUrl}${ApiConstant.LOGIN}`, loginViewModel).pipe(map((response) => {
-      this.setUserToken(response.token);
-      this.userLogInStatus.set(true);
+      this.updateUserStatus(response);
       return response;
     }));
+  }
+
+  register(registerViewModel: RegisterViewModel) {
+    return this.http.post<AuthResponse>(`${this.baseUrl}${ApiConstant.REGISTER}`, registerViewModel).pipe(map((response) => {
+      this.updateUserStatus(response);
+      return response;
+    }));
+  }
+  private updateUserStatus(response: AuthResponse) {
+    this.setUserToken(response.token);
+    this.userLogInStatus.set(true);
   }
   setUserToken(token: string) {
     localStorage.setItem(ApiConstant.USER_TOKEN, token);

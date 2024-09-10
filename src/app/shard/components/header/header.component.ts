@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { LoginComponent } from '../../../pages/login/login.component';
 import { AuthService } from '../../../core/services/auth.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { CommonModule } from '@angular/common';
+import { LoginComponent } from '../../../pages/account/login/login.component';
 @Component({
   selector: 'app-header',
   standalone: true,

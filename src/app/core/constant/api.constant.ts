@@ -4,6 +4,7 @@ export const ApiConstant = {
   RESERVATIONS: 'reservations',
   ACCOUNTS: 'accounts',
   LOGIN:'accounts/login',
+  REGISTER:'accounts/register',
   PROFILE:'accounts/profile',
   USER_TOKEN: "TOKEN",
   AUTH_HEADER: "Authorization",
