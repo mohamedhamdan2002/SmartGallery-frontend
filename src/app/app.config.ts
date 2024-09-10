@@ -6,6 +6,7 @@ import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 import {  MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { provideToastr } from 'ngx-toastr';
+import { errorHandlerInterceptor } from './core/interceptors/error-handler.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     MatDialogModule,
@@ -14,7 +15,8 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(
       withInterceptors([
-        authInterceptor
+        authInterceptor,
+        errorHandlerInterceptor
       ])
     )
   ]
