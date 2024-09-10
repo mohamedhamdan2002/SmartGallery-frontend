@@ -41,10 +41,13 @@ export class ServiceService extends ApiService {
   deleteService(id: number) {
     return this.http.delete(`${this.baseUrl}${ApiConstant.SERVICES}/${id}`);
   }
-  updateService(id: number, serviceModel: ServiceForCreateOrUpdate) {
-    return this.http.put(`${this.baseUrl}${ApiConstant.SERVICES}/${id}`, serviceModel);
+  updateService(id: number, formData: FormData) {
+    return this.http.put(`${this.baseUrl}${ApiConstant.SERVICES}/${id}`, formData);
   }
-  createService(serviceModel: ServiceForCreateOrUpdate) {
-    return this.http.post(`${this.baseUrl}${ApiConstant.SERVICES}`, serviceModel);
+  createService(formData: FormData) {
+    return this.http.post(`${this.baseUrl}${ApiConstant.SERVICES}`,  formData);
+  }
+  getServiceById(id: number) {
+    return this.http.get<IService>(`${this.baseUrl}${ApiConstant.SERVICES}/${id}`);
   }
 }

@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MaterialModule } from '../../shard/material.module';
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    MaterialModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -20,7 +22,6 @@ export class LoginComponent implements OnInit {
   private router = inject(Router);
   private activeRoute = inject(ActivatedRoute);
   private authService = inject(AuthService);
-
   ngOnInit(): void {
     if(this.authService.isUserLogIn)
       history.back();

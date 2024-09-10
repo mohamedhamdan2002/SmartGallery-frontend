@@ -21,3 +21,6 @@
   border-color: var(--primary-color) !important;
 }
 
+.dialog {
+  width: 500px;
+}

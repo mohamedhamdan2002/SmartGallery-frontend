@@ -1,16 +1,8 @@
 <div class="container">
-  <h1>List Of Services</h1>
+  <h1>List Of Reservations</h1>
 <div class="d-flex justify-content-between align-items-center my-4 actions">
-  <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input
-      placeholder="filter"
-      type="text"
-      matInput
-    >
-  </mat-form-field>
   <div>
-    <button class="btn bg-main-primary text-light me-5" routerLink="/admin/services/add">
+    <button class="btn bg-main-primary text-light me-5">
       <fa-icon [icon]="icons.add" class="text-light"></fa-icon>
     </button>
     <button class="btn bg-main-primary text-light me-5 ">
@@ -55,22 +47,34 @@
     <!-- Name Column -->
     <ng-container matColumnDef="service">
       <th mat-header-cell *matHeaderCellDef> Service </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.service}} </td>
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef> Category </th>
-      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
     </ng-container>
-    <ng-container matColumnDef="cost">
-      <th mat-header-cell *matHeaderCellDef> Cost </th>
-      <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+    <ng-container matColumnDef="reservationDate">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.reservationDate | date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="customerName">
+      <th mat-header-cell *matHeaderCellDef> Customer </th>
+      <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="customerEmail">
+      <th mat-header-cell *matHeaderCellDef> Customer Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.customerEmail}} </td>
+    </ng-container>
+    <ng-container matColumnDef="customerAddress">
+      <th mat-header-cell *matHeaderCellDef> Customer Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.customerAddress}} </td>
     </ng-container>
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef> Edit </th>
       <td mat-cell *matCellDef="let element;">
-        <a role="button" class="me-2" (click)="edit(element.id); $event.stopPropagation()">
+        <a role="button" class="me-2" (click)="$event.stopPropagation()">
           <fa-icon [icon]="icons.edit" class="text-prim-color"></fa-icon>
         </a>
       </td>
@@ -78,7 +82,7 @@
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef> Delete </th>
       <td mat-cell *matCellDef="let element">
-        <a role="button" (click)="openConfirmDialog(element); $event.stopPropagation()">
+        <a role="button" (click)="$event.stopPropagation()">
           <fa-icon [icon]="icons.delete" class="text-danger"></fa-icon>
         </a>
       </td>
@@ -100,11 +104,16 @@
         <div class="example-element-detail mb-2"
             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
           <div>
-            <img  style="width: 150px;" [src]="element.pictureUrl" alt="service image">
           </div>
           <div class="example-element-description">
-            <span class="example-element-description-attribution">Description:<br></span>
-            {{element.description}}
+            <!-- <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title> Customer Info </mat-panel-title>
+              </mat-expansion-panel-header>
+            </mat-expansion-panel>
+          </mat-accordion> -->
+          {{element.problemDescription}}
           </div>
         </div>
       </td>
@@ -120,5 +129,4 @@
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail'];" class="example-detail-row"></tr>
   </table>
 </div>
-<mat-paginator [length]="count" [pageSize]="pageSize" (page)="onPageChanges($event)"></mat-paginator>
 </div>

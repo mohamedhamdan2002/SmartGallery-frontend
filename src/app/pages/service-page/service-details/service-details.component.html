@@ -2,21 +2,22 @@
   <div class="row mt-4">
     <div class="col-7">
       <div class="card">
-        <img src="https://fakeimg.pl/350x200/" alt="service image" class="card-img-top">
+        <img [src]="service.pictureUrl" alt="service image" class="card-img-top">
         <div class="card-body">
-          <h5 class="card-title">Service Name</h5>
+          <h5 class="card-title">{{service.name}}</h5>
         </div>
       </div>
     </div>
     <div class="col-5">
       <div class="about-service">
         <h1>Service Description</h1>
-        <p class="p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam quam soluta laboriosam magni? Iure soluta dolore maxime repellendus magnam temporibus eum in aliquid beatae! Nihil voluptas ex atque autem nobis.</p>
+        <p class="p-2">{{service.description}}</p>
+        <P>Cost: {{service.cost}}</P>
       </div>
-      <button class="btn btn-primary" (click)="openModal(templateRef)">Apply To Service</button>
+      <button class="btn bg-main-primary text-light" (click)="openModal()">Apply To Service</button>
     </div>
   </div>
+  @if(service.id) {
+    <app-reviews [serviceId]="service.id" />
+  }
 </div>
-<ng-template #templateRef>
-  <service-reservation-form [modalRef]="modalRef"></service-reservation-form>
-</ng-template>

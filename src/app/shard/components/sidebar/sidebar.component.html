@@ -1,22 +1,28 @@
-<aside>
+<aside [ngClass]="{collapsed: collapse()}">
   <div class="aside-header">
-    <a role="button">
-      <fa-icon [icon]="faAnglesLeft" class="text-light fa-xl"></fa-icon>
+    <a role="button" (click)="collapse.set(!collapse())">
+      <fa-icon [icon]="sideBarIcon()" class="text-light fa-xl"></fa-icon>
     </a>
-    <h4 class="text-light text-uppercase text-center">Smart Gallery</h4>
+    <h4 class="text-light text-uppercase text-center" [class.d-none]="collapse()">Smart Gallery</h4>
   </div>
-  <ul class="nav flex-column">
+  <ul class="nav flex-column" [class.nav-collapsed]="collapse()">
     <li class="nav-item">
-      <fa-icon [icon]="faList" class="text-light ms-4"></fa-icon>
-      <a class="nav-link" role="button" routerLink="/admin/categories">Categories</a>
+      <a class="nav-link" [class.nav-link-collapsed]="collapse()" role="button" routerLink="/admin/categories">
+        <fa-icon [icon]="faList" class="text-light" [class.ms-4]="!collapse()"></fa-icon>
+        <span [class.d-none]="collapse()">Categories</span>
+      </a>
     </li>
     <li class="nav-item">
-      <fa-icon [icon]="faBorderAll" class="text-light ms-4"></fa-icon>
-      <a class="nav-link" role="button" routerLink="/admin/services">Services</a>
+      <a class="nav-link" role="button" routerLink="/admin/services">
+        <fa-icon [icon]="faBorderAll" class="text-light" [class.ms-4]="!collapse()"></fa-icon>
+        <span [class.d-none]="collapse()">Services</span>
+      </a>
     </li>
     <li class="nav-item">
-      <fa-icon [icon]="faTableList" class="text-light ms-4"></fa-icon>
-      <a class="nav-link" role="button">Reservations</a>
+      <a class="nav-link" role="button" routerLink="/admin/reservations">
+        <fa-icon [icon]="faTableList" class="text-light " [class.ms-4]="!collapse()"></fa-icon>
+        <span [class.d-none]="collapse()">Reservations</span>
+      </a>
     </li>
   </ul>
 </aside>

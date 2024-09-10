@@ -1,27 +1,18 @@
-<div>
-  <div class="modal-header">
-    <h4 class="modal-title">Reservation</h4>
-    <button
-      type="button"
-      class="close btn-close pull-right"
-      aria-label="Close"
-      (click)="modalRef?.hide()"
-      >
-      <span aria-hidden="true" class="visually-hidden">&times;</span>
-    </button>
-  </div>
-
-  <div class="modal-body">
+<div class="dialog">
+  <h1 mat-dialog-title>Reservation</h1>
+  <div mat-dialog-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="mb-3">
+      <mat-form-field class="mb-3 col-12">
+        <mat-label>Problem Description</mat-label>
         <textarea
-          class="form-control input-field"
           rows="3"
           placeholder="Enter Problem Description"
+          matInput
           formControlName="problemDescription"
+          required
           >
         </textarea>
-      </div>
+      </mat-form-field>
       <div class="form-check form-switch mb-3">
         <input
           class="form-check-input"
@@ -35,33 +26,36 @@
       <ng-container *ngIf="isAddressChecked()">
         <div class="row p-3" formGroupName="address">
           <h4 class="mb-3">Address</h4>
-          <div class="col-4 mb-4">
+          <mat-form-field class="col-4 mb-4">
+            <mat-label>Country</mat-label>
             <input
-              class="form-control input-field"
+              matInput
               placeholder="Country"
               type="text"
               formControlName="country"
               required
               >
-          </div>
-          <div class="col-4 mb-4">
+          </mat-form-field>
+          <mat-form-field class="col-4 mb-4">
+            <mat-label>City</mat-label>
             <input
-              class="form-control input-field"
+              matInput
               placeholder="City"
               type="text"
               formControlName="city"
               required
               >
-          </div>
-          <div class="col-4 mb-4">
+          </mat-form-field>
+          <mat-form-field class="col-4 mb-4">
+            <mat-label>Street</mat-label>
             <input
-              class="form-control input-field"
+              matInput
               placeholder="Street"
               type="text"
               formControlName="street"
               required
               >
-          </div>
+          </mat-form-field>
         </div>
       </ng-container>
       <div class="form-check form-switch mb-3">
@@ -78,36 +72,48 @@
       <ng-container *ngIf="isNotForMe()">
         <div class="row p-3" formGroupName="contact">
           <h4 class="mb-3">Contact Info</h4>
-          <div class="col-6 mb-4">
+          <mat-form-field class="col-6 mb-4">
+            <mat-label>First Name</mat-label>
             <input
-              class="form-control input-field"
+              matInput
               placeholder="First Name"
               type="text"
               formControlName="firstName"
               required
               >
-          </div>
-          <div class="col-6 mb-4">
+          </mat-form-field>
+          <mat-form-field class="col-6 mb-4">
+            <mat-label>Last Name</mat-label>
             <input
-              class="form-control input-field"
+              matInput
               placeholder="Last Name"
               type="text"
               formControlName="lastName"
               required
               >
-          </div>
-          <div class="mb-4">
+          </mat-form-field>
+          <mat-form-field class="mb-4">
+            <mat-label>Phone Number</mat-label>
             <input
-              class="form-control input-field"
+              matInput
               placeholder="Phone Number"
               type="text"
               formControlName="phoneNumber"
               required
               >
-          </div>
+          </mat-form-field>
         </div>
       </ng-container>
-      <button class="btn btn-bg-org text-light" type="submit">Reservation</button>
+      <div mat-dialog-actions>
+        <button class="btn bg-main-primary text-light me-4" type="button" (click)="dialog.close(false)">Cancel</button>
+        <button
+          class="btn btn-bg-org text-light"
+          type="submit"
+          [disabled]="form.invalid"
+          >
+          Reservation
+        </button>
+      </div>
     </form>
   </div>
 </div>

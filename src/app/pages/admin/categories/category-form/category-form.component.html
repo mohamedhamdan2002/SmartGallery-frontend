@@ -1,28 +1,20 @@
 <form (ngSubmit)="onSubmit()" #form="ngForm">
-  <div class="modal-header">
-    <h5 class="modal-title">{{status}} Category</h5>
-    <button
-      type="button"
-      class="btn-close"
-      data-bs-dismiss="modal"
-      aria-label="Close"
-      (click)="close()"
-      >
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="mb-4">
+  <h2 mat-dialog-title>{{status}} Category</h2>
+
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Category</mat-label>
       <input
-        class="form-control input-field"
-        placeholder="Category"
+        matInput
+        placeholder="Enter Category"
         name="categoryName"
         type="text"
         [(ngModel)]="categoryModel.name"
         required
         >
-    </div>
+    </mat-form-field>
   </div>
-  <div class="modal-footer">
+  <div mat-dialog-actions>
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Cancel</button>
     <button
       type="submit"
@@ -33,3 +25,4 @@
     </button>
   </div>
 </form>
+

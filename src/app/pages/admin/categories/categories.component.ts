@@ -1,5 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit, TemplateRef } from '@angular/core';
-import { filter, map, Observable, tap } from 'rxjs';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ICategory } from '../../../shard/models/category';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { CategoryService } from '../../../core/services/category.service';
@@ -11,6 +10,8 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MaterialModule } from '../../../shard/material.module';
 import { SelectionModel } from '@angular/cdk/collections';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-categories',
   standalone: true,
@@ -30,6 +31,7 @@ export class CategoriesComponent implements OnInit {
   dataSource = new MatTableDataSource<ICategory>();
   categoryService = inject(CategoryService);
   modalService = inject(ModalService);
+  toastrService = inject(ToastrService);
   ngOnInit(): void {
     this.loadCategories();
   }
@@ -46,7 +48,7 @@ export class CategoriesComponent implements OnInit {
       message: `are you sure you want to delete this category: '${category.name}'?`
     }
     const ref = this.modalService.openModal(ConfirmDialogComponent, initialState);
-    ref.onHide?.subscribe((value) => {
+    ref.afterClosed().subscribe((value) => {
       if(value == true) {
         this.deleteCategory(category.id);
       }
@@ -56,6 +58,7 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.deleteCategory(categoryId).subscribe(
       () => {
         this.dataSource.data = this.dataSource.data.filter(c => c.id !== categoryId);
+        this.toastrService.success("Category was deleted successfully");
       }
     );
   }
@@ -71,7 +74,7 @@ export class CategoriesComponent implements OnInit {
       category: category
     }
     const ref = this.modalService.openModal(CategoryFormComponent, initialState);
-    ref.onHide?.subscribe((value) => {
+    ref.afterClosed().subscribe((value) => {
       if(value == true) {
         this.loadCategories();
       }

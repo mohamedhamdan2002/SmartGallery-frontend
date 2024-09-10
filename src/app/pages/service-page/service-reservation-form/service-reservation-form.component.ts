@@ -1,32 +1,36 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, signal, Signal } from '@angular/core';
+import { Component, Inject, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ReservationService } from '../../../core/services/reservation.service';
 import { IReservationForCreation } from '../../../shard/models/Reservation';
-import { ActivatedRoute } from '@angular/router';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { MaterialModule } from '../../../shard/material.module';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'service-reservation-form',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   templateUrl: './service-reservation-form.component.html',
   styleUrl: './service-reservation-form.component.css'
 })
 export class ServiceReservationFormComponent {
-  @Input() modalRef?: BsModalRef
+  dialog = inject(MatDialogRef<ServiceReservationFormComponent>);
   isAddressChecked = signal(false);
   isNotForMe = signal(false);
   form: FormGroup;
   serviceId: number;
+  toastrService = inject(ToastrService);
   constructor(
     private fb: FormBuilder,
     private reservationService: ReservationService,
-    private activeRoute: ActivatedRoute
+    @Inject(MAT_DIALOG_DATA) private data : any
   ) {
-    const id = activeRoute.snapshot.paramMap.get('id');
+    const id = data.id;
+    console.log(id);
     this.serviceId = Number(id);
     this.form = this.fb.group({
       problemDescription: ['']
@@ -38,7 +42,8 @@ export class ServiceReservationFormComponent {
     const reservation = { ...this.form.value } as IReservationForCreation;
     this.reservationService.createReservation(this.serviceId, reservation).subscribe((res) => {
       console.log(res);
-      
+      this.dialog.close(res);
+      // this.toastrService.success("Reservation Done Successfully");
     });
   }
   onAddressInputChange() {
@@ -73,4 +78,5 @@ export class ServiceReservationFormComponent {
     }
     console.log(this.form.value);
   }
+
 }

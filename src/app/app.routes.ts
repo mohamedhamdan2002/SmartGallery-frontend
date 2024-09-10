@@ -8,16 +8,22 @@ import { LayoutComponent } from './pages/admin/layout/layout.component';
 import { CategoriesComponent } from './pages/admin/categories/categories.component';
 import { ServicesComponent } from './pages/admin/services/services.component';
 import { ServiceFormComponent } from './pages/admin/services/service-form/service-form.component';
+import { ReservationsComponent } from './pages/admin/reservations/reservations.component';
+import { UserLayoutComponent } from './shard/components/user-layout/user-layout.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'services', component: ServicePageComponent },
-  { path: 'services/:id', component: ServiceDetailsComponent },
   {
-    path: 'accounts', children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'profile', component: ProfileComponent }
+    path:'', component: UserLayoutComponent, children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: 'services', component: ServicePageComponent },
+      { path: 'services/:id', component: ServiceDetailsComponent },
+      {
+        path: 'accounts', children: [
+          { path: 'login', component: LoginComponent },
+          { path: 'profile', component: ProfileComponent }
+        ]
+      },
     ]
   },
   {
@@ -28,6 +34,7 @@ export const routes: Routes = [
       { path: 'services', component: ServicesComponent },
       { path: 'services/add', component: ServiceFormComponent },
       { path: 'services/edit/:id', component: ServiceFormComponent },
+      { path: 'reservations', component: ReservationsComponent },
     ]
   }
 ];

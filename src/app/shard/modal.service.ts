@@ -1,22 +1,21 @@
 import { Injectable, TemplateRef } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalService {
-  modalRef?: BsModalRef;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private dialog: MatDialog,) {
 
   }
   openModal(component: any, initialState?: object) {
-    this.modalRef = this.modalService.show(component, { initialState });
-    return this.modalRef;
+    const dialog = this.dialog.open(component,
+    {
+      data: initialState
+    });
+    return dialog;
   }
-  closeModal() {
-    if(this.modalRef) {
-      this.modalRef.hide();
-    }
-  }
+
 }

@@ -1,0 +1,7 @@
+<div class="card card-body my-3">
+  <h4>{{review.asAnonymous ? 'Anonymous': review.customerName }}</h4>
+  <rating [max]="5" [readonly]="true" [(ngModel)]="review.rate"></rating>
+  <span>{{review.createdAt | date}}</span>
+  <h6>{{review.title}}</h6>
+  <p>{{review.comment}}</p>
+</div>

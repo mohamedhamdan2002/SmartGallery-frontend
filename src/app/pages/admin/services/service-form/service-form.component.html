@@ -57,20 +57,20 @@
       </div>
       <div class="col-5">
         <div>
-          <img class="card-img-top" src="https://fakeimg.pl/350x200/" alt="service-image">
+          <img class="card-img-top" [src]="(pictureSrc ? pictureSrc : 'https://fakeimg.pl/350x200/')" alt="service-image">
           <div class="mt-4">
             <input
               class="form-control input-field"
               placeholder="pictureUrl"
               type="file"
-              formControlName="pictureUrl"
+              (change)="onPictureSelected($event)"
               required
               >
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+      <div>
+        <button type="button" class="btn btn-secondary me-4" data-bs-dismiss="modal">Back</button>
         <button
           type="submit"
           class="btn text-light bg-main-primary"

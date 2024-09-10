@@ -12,3 +12,7 @@
 .input-field::placeholder {
   color: var(--primary-color);
 }
+img {
+  width: 350px;
+  max-height: 350px;
+}

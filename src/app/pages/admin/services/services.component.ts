@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { IService } from '../../../shard/models/service';
 import { ServiceItemComponent } from '../../service-page/service-item/service-item.component';
 import { ServiceService } from '../../../core/services/service.service';
@@ -11,7 +11,13 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDateSelectionModel } from '@angular/material/datepicker';
 import { SelectionModel } from '@angular/cdk/collections';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { ServiceParameters } from '../../../shard/models/ServiceParameters';
+import { ConfirmDialogComponent } from '../../../shard/components/confirm-dailog/confirm-dialog.component';
+import { ModalService } from '../../../shard/modal.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-services',
   standalone: true,
@@ -37,24 +43,28 @@ export class ServicesComponent {
   columnsToDisplay = ['select', 'no', 'service', 'category', 'cost', 'edit', 'delete'];
   dataSource = new MatTableDataSource<IService>();
   service = inject(ServiceService);
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  pageSize: number = 0;
+  count: number = 0;
+  modalService = inject(ModalService);
+  readonly toastrService = inject(ToastrService);
+  readonly router = inject(Router);
   ngOnInit(): void {
     this.loadServices();
   }
   loadServices() {
     this.service.getAllServices().subscribe((res) => {
       this.dataSource.data = res.data;
+      this.pageSize = res.pageSize;
+      this.count = res.count;
     });
   }
 
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement!: IService | null;
-  edit() {
-    console.log("edit button clicked ");
+  edit(serviceId: number) {
+    this.router.navigate(['/admin/services/edit', serviceId]);
   }
-  delete() {
-    console.log("delete button clicked")
-  }
-
   selection = new SelectionModel<IService>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -80,6 +90,41 @@ export class ServicesComponent {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${position || 0 + 1}`;
+  }
+
+  onPageChanges(event: PageEvent) {
+    const params = this.service.getServiceParams();
+    console.log(event);
+    if(event.pageIndex + 1 != params.pageNumber)
+    {
+      params.pageNumber = event.pageIndex + 1;
+      this.uploadServices(params);
+    }
+  }
+  private uploadServices(params: ServiceParameters) {
+    this.service.setServiceParams(params);
+    this.loadServices();
+  }
+  openConfirmDialog(service: IService) {
+    const initialState = {
+      title: "Delete Service",
+      message: `are you sure you want to delete this Service: '${service.name}'?`
+    }
+    const ref = this.modalService.openModal(ConfirmDialogComponent, initialState);
+    ref.afterClosed().subscribe((value) => {
+      if(value == true) {
+        this.deleteService(service.id);
+      }
+    });
+  }
+  private deleteService(serviceId: number) {
+    this.service.deleteService(serviceId).subscribe(
+      () => {
+        this.dataSource.data = this.dataSource.data.filter(s => s.id !== serviceId);
+        --this.count;
+        this.toastrService.success("Service Was Deleted Successfully");
+      }
+    );
   }
 }
 

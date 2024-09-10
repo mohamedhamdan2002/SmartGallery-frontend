@@ -6,9 +6,10 @@
     </div>
     <div class="card-body">
       <form #form="ngForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
+        <mat-form-field class="mb-3 col-12">
+          <mat-label>Email</mat-label>
           <input
-            class="form-control input-field"
+            matInput
             placeholder="Enter Your Email"
             type="email"
             name="email"
@@ -17,15 +18,17 @@
             required
             #email="ngModel"
             >
-          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
-            <div *ngIf="email.hasError('required')">
-              Email is Required
-            </div>
-          </div>
-        </div>
-        <div class="mb-4">
+          @if(email.hasError('email') && !email.hasError('required')) {
+            <mat-error>Please enter a valid email address</mat-error>
+          }
+          @if(email.hasError('required')) {
+            <mat-error>Email is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="mb-3 col-12">
+          <mat-label>Password</mat-label>
           <input
-            class="form-control input-field"
+            matInput
             placeholder="Enter Your Password"
             type="password"
             name="password"
@@ -33,12 +36,10 @@
             required
             #password="ngModel"
             >
-            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
-              <div *ngIf="password.hasError('required')">
-                Password is Required
-              </div>
-            </div>
-        </div>
+          @if(password.hasError('required')) {
+            <mat-error>Password is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
         <div class="d-grid">
           <button
             class="btn btn-bg-org text-light py-2"

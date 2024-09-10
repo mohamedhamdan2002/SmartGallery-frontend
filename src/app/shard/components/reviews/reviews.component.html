@@ -1,0 +1,14 @@
+<div class="card card-body my-5 review-container">
+  <div class="row">
+    <div class="col-4">
+      <h4>rating</h4>
+    </div>
+    <div class="col-8">
+      <h5>Reviews</h5>
+      @for(review of (reviews$ | async); track review.id;) {
+        <review-item [review]="review"/>
+      }
+    </div>
+  </div>
+</div>
+

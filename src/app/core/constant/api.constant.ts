@@ -7,5 +7,6 @@ export const ApiConstant = {
   PROFILE:'accounts/profile',
   USER_TOKEN: "TOKEN",
   AUTH_HEADER: "Authorization",
-  AUTH_SCHEMA: "Bearer"
+  AUTH_SCHEMA: "Bearer",
+  REVIEWS: 'reviews'
 }
