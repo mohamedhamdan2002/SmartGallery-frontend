@@ -1,0 +1,28 @@
+@use '../../shard-lib/src/lib/styles/variables' as *;
+@use '../../shard-lib/src/lib/styles/theme' as *;
+
+ul{
+  list-style: none;
+}
+body {
+  background-color: white !important;
+}
+.bg-main-primary {
+  background-color: $primary-color !important;
+
+}
+.text-org-color {
+  color: $secondary-color !important;
+}
+.btn-bg-org {
+  background-color: $secondary-color !important;
+}
+.text-prim-color {
+  color: $secondary-color !important;
+}
+
+/* font-family: Roboto, sans-serif; */
+button {
+  border-radius: 40px !important;
+  color: white !important;
+}

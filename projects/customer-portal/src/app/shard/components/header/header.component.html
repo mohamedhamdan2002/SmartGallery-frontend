@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand text-uppercase"href="#">Smart Services</a>
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> -->
+        <button class="navbar-toggler" color="primary" mat-mini-fab data-toggle="collapse" data-target="#navbarNav">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav text-uppercase">
+                <li class="nav-item me-2">
+                    <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/services" routerLinkActive="active">Services</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+              @if(!authService.isUserLogIn) {
+                <li class="me-2">
+                  <button
+                    mat-raised-button
+                    color="accent"
+                    (click)="openLoginDialog()"
+                    >
+                    Login
+                  </button>
+                </li>
+                <li>
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="openRegisterDialog()"
+                    >
+                    Register
+                  </button>
+                </li>
+              }@else {
+                <li>
+                  <button color="primary" mat-mini-fab [matMenuTriggerFor]="menu" >
+                    <mat-icon>account_circle</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                      <mat-icon>account_box</mat-icon>
+                      <span>MyProfile</span>
+                    </button>
+                    <button mat-menu-item (click)="onLogoutBtnClicked()">
+                      <mat-icon>exit_to_app</mat-icon>
+                      <span>Logout</span>
+                    </button>
+                  </mat-menu>
+                </li>
+              }
+            </ul>
+        </div>
+    </div>
+</nav>

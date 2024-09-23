@@ -1,0 +1,11 @@
+@use '../../../../../../../shard-lib/src/lib/styles/variables' as *;
+.dialog {
+  width: 500px;
+}
+.form-check-input {
+  box-shadow: none;
+}
+.form-check-input:checked {
+  background-color: $primary-color !important;
+  border-color: $primary-color !important;
+}

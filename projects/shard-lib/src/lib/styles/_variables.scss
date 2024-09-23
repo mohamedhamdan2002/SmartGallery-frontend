@@ -1,0 +1,71 @@
+$primary-color: #172153;
+$secondary-color: #f56f46;
+$second-font-color: #454f59;
+$second-bg-color: #f5f7fa;
+$third-color: #fff;
+
+$custom-primary-palette: (
+  50 : #e3e4ea,
+  100 : #b9bccb,
+  200 : #8b90a9,
+  300 : #5d6487,
+  400 : #3a426d,
+  500 : #172153,
+  600 : #141d4c,
+  700 : #111842,
+  800 : #0d1439,
+  900 : #070b29,
+  A100 : #6571ff,
+  A200 : #3243ff,
+  A400 : #0014fe,
+  A700 : #0012e5,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #ffffff,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #ffffff,
+      A200 : #ffffff,
+      A400 : #ffffff,
+      A700 : #ffffff,
+  )
+);
+
+$custom-accent-palette: (
+    50 : #feeee9,
+    100 : #fcd4c8,
+    200 : #fab7a3,
+    300 : #f89a7e,
+    400 : #f78562,
+    500 : #f56f46,
+    600 : #f4673f,
+    700 : #f25c37,
+    800 : #f0522f,
+    900 : #ee4020,
+    A100 : #ffffff,
+    A200 : #fff3f1,
+    A400 : #ffc7be,
+    A700 : #ffb1a5,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);

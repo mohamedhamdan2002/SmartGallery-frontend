@@ -1,0 +1,33 @@
+@use '../../../../../../../shard-lib/src/lib/styles/variables' as *;
+ul li {
+  color: $primary-color;
+}
+ul:hover,
+ul.active {
+  background-color: $primary-color;
+  border-radius: 5px;
+  cursor: pointer;
+}
+ul:hover > li,
+ul.active > li  {
+  color: white;
+}
+.search {
+  width: 35%;
+}
+.service-sideBar {
+  border: 1px solid #d0d7de;
+  border-radius: 10px;
+}
+.sort {
+  border-bottom: 1px solid #d0d7de;
+}
+::ng-deep .pagination .page-item a {
+  color: $primary-color !important;
+}
+::ng-deep .pagination .page-item.active .page-link {
+  color: $primary-color !important;
+  border-color: transparent;
+  background-color: $secondary-color !important;
+}
+

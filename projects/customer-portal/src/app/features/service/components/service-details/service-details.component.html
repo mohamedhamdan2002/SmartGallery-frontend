@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-7">
+      <div class="card">
+        <img [src]="service.pictureUrl" alt="service image" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{service.name}}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="about-service">
+        <h1>Service Description</h1>
+        <p class="p-2">{{service.description}}</p>
+        <P>Cost: {{service.cost}}</P>
+      </div>
+      <button class="btn bg-main-primary text-light" (click)="openModal()">Apply To Service</button>
+    </div>
+  </div>
+  <!-- @if(service.id) {
+    <app-reviews [serviceId]="service.id" />
+  } -->
+</div>

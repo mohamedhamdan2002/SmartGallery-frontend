@@ -1,0 +1,51 @@
+<div class="login">
+  <div mat-dialog-title class="p-3 text-center">
+    <h1 class="text-prim-color text-uppercase ">Smart Gallery</h1>
+    <p class="text-black-50 mt-3">welcome back we missed you.</p>
+  </div>
+  <form mat-dialog-content #form="ngForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="mb-3 col-12">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="Enter Your Email"
+        type="email"
+        name="email"
+        [(ngModel)]="loginForm.email"
+        email
+        required
+        #email="ngModel"
+        >
+      @if(email.hasError('email') && !email.hasError('required')) {
+        <mat-error>Please enter a valid email address</mat-error>
+      }
+      @if(email.hasError('required')) {
+        <mat-error>Email is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="mb-3 col-12">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        placeholder="Enter Your Password"
+        type="password"
+        name="password"
+        [(ngModel)]="loginForm.password"
+        required
+        #password="ngModel"
+        >
+      @if(password.hasError('required')) {
+        <mat-error>Password is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <div class="d-grid">
+      <button
+        class="btn btn-bg-org text-light py-2"
+        type="submit"
+        [disabled]="form?.invalid"
+        >
+        Login
+      </button>
+    </div>
+  </form>
+</div>

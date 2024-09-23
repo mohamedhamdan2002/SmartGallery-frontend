@@ -1,0 +1,7 @@
+<h4 class="text-org-color px-4 text-uppercase my-3">Sort</h4>
+<mat-selection-list color="primary" [formControl]="sortControl" [multiple]="false">
+  @for (item of items; track item) {
+    <mat-list-option [value]="item.value">{{item.name}}</mat-list-option>
+  }
+</mat-selection-list>
+

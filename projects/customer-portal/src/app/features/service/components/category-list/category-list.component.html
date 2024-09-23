@@ -1,0 +1,6 @@
+<h4 class="text-org-color px-4 text-uppercase mb-3">Categories</h4>
+<mat-selection-list  color="primary" [formControl]="categoryIdControl">
+  @for (category of categories; track category.id; let i = $index) {
+    <mat-list-option [value]="category.id">{{category.name}}</mat-list-option>
+  }
+</mat-selection-list>
