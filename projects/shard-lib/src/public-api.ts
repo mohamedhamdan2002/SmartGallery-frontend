@@ -25,9 +25,16 @@ export * from './lib/services/auth.service';
 export * from './lib/services/category.service';
 export * from './lib/services/service.service';
 export * from './lib/services/reservation.service';
+export * from './lib/services/loading.service';
 
 // modules
 export * from './lib/material.module';
 
 // components
 export * from './lib/components/confirm-dialog/confirm-dialog.component'
+export * from './lib/components/loading-spinner/loading-spinner.component'
+
+// interceptors
+export * from './lib/interceptors/auth.interceptor';
+export * from './lib/interceptors/error-handler.interceptor';
+export * from './lib/interceptors/loading-indicator.interceptor';
